@@ -48,14 +48,12 @@ Metrics.in <- computeCutOff(ProbCrisis = ProbCrisis, True = Response.Train)
   <tr>
     <td>Optimal cut-off</td> <td>0.31</td> <td>0.21</td>
   </tr>
-
   <tr>
     <td>True positive</td> <td>112</td> <td>118</td>
   </tr>
   <tr>
     <td>False positive</td> <td>16</td> <td>46</td>
   </tr>
-  
   <tr>
     <td>Sensitivity/Recall</td> <td>0.91</td> <td>0.96</td>
   </tr>
@@ -91,6 +89,7 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
 
 <h2>Early Warning Systems using binary regression models</h2>
 
+Preparing Data.1 for fixed effect model dropping all countries that do not present crises during the hole period and Data.2 for the other two models
 
 
 
