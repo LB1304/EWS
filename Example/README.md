@@ -41,38 +41,38 @@ Metrics.in <- computeCutOff(ProbCrisis = ProbCrisis, True = Response.Train)
 ```
 
 <div align="center">
-<table>
+  <table>
+    <tr>
+      <td></td><td>PR curve</td><td>ROC curve</td>
+    </tr>
+    <tr>
+      <td>Optimal cut-off</td> <td>0.31</td> <td>0.21</td>
+    </tr>
+    <tr>
+      <td>True positive</td> <td>112</td> <td>118</td>
+    </tr>
+    <tr>
+      <td>False positive</td> <td>16</td> <td>46</td>
+    </tr>
+    <tr>
+      <td>Sensitivity/Recall</td> <td>0.91</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>Specificity</td> <td>0.99</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>Precision</td> <td>0.88</td> <td>0.72</td>
+    </tr>
+    <tr>
+      <td>Accuracy</td> <td>0.98</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>F1</td> <td>0.89</td> <td>0.82</td>
+    </tr>
+  </table>
   <caption>
-    In-sample prediction evaluation metrics
+    <em>Table 1.</em> In-sample prediction evaluation metrics
   </caption>
-  <tr>
-    <td></td><td>PR curve</td><td>ROC curve</td>
-  </tr>
-  <tr>
-    <td>Optimal cut-off</td> <td>0.31</td> <td>0.21</td>
-  </tr>
-  <tr>
-    <td>True positive</td> <td>112</td> <td>118</td>
-  </tr>
-  <tr>
-    <td>False positive</td> <td>16</td> <td>46</td>
-  </tr>
-  <tr>
-    <td>Sensitivity/Recall</td> <td>0.91</td> <td>0.96</td>
-  </tr>
-  <tr>
-    <td>Specificity</td> <td>0.99</td> <td>0.96</td>
-  </tr>
-  <tr>
-    <td>Precision</td> <td>0.88</td> <td>0.72</td>
-  </tr>
-  <tr>
-    <td>Accuracy</td> <td>0.98</td> <td>0.96</td>
-  </tr>
-  <tr>
-    <td>F1</td> <td>0.89</td> <td>0.82</td>
-  </tr>
-</table>
 </div>
 
 We compute the crisis probability for each sample unit in the test set and forecast the event of interest using the previously selected optimal cut-offs. We report the standard evaluation metrics to assess the performance of out-of-sample forecast.
@@ -89,9 +89,6 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
 ```
 
 <div align="center">
-  <caption>
-    Out-of-sample forecast evaluation metrics
-  </caption>
   <table>
     <tr>
       <td></td><td>PR curve</td><td>ROC curve</td>
@@ -118,6 +115,9 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
       <td>F1</td> <td>0.86</td> <td>0.80</td>
     </tr>
   </table>
+  <caption>
+    <em>Table 2.</em> Out-of-sample forecast evaluation metrics
+  </caption>
 </div>
 
 
