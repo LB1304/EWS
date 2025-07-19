@@ -194,32 +194,32 @@ Metrics.in.FE <- computeCutOff(ProbCrisis = ProbCrisis.FE, True = Data.Train.2$Y
       <td></td><td>PR curve</td><td>ROC curve</td>
     </tr>
     <tr>
-      <td>Optimal cut-off</td> <td>0.31</td> <td>0.21</td>
+      <td>Optimal cut-off</td> <td>0.22</td> <td>0.16</td>
     </tr>
     <tr>
-      <td>True positive</td> <td>112</td> <td>118</td>
+      <td>True positive</td> <td>84</td> <td>100</td>
     </tr>
     <tr>
-      <td>False positive</td> <td>16</td> <td>46</td>
+      <td>False positive</td> <td>93</td> <td>150</td>
     </tr>
     <tr>
-      <td>Sensitivity/Recall</td> <td>0.91</td> <td>0.96</td>
+      <td>Sensitivity/Recall</td> <td>0.68</td> <td>0.81</td>
     </tr>
     <tr>
-      <td>Specificity</td> <td>0.99</td> <td>0.96</td>
+      <td>Specificity</td> <td>0.83</td> <td>0.73</td>
     </tr>
     <tr>
-      <td>Precision</td> <td>0.88</td> <td>0.72</td>
+      <td>Precision</td> <td>0.48</td> <td>0.40</td>
     </tr>
     <tr>
-      <td>Accuracy</td> <td>0.98</td> <td>0.96</td>
+      <td>Accuracy</td> <td>0.81</td> <td>0.75</td>
     </tr>
     <tr>
-      <td>F1</td> <td>0.89</td> <td>0.82</td>
+      <td>F1</td> <td>0.56</td> <td>0.54</td>
     </tr>
   </table>
   <caption>
-    <em>Table 1.</em> Main performance metrics for the in-sample prediction under the estimated fixed-effect logit model. The total number of observed events of interesr is 123. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
+    <em>Table 3.</em> Main performance metrics for the in-sample prediction under the estimated fixed-effect logit model. The total number of observed events of interesr is 123. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
   </caption>
 </div>
 
@@ -250,3 +250,35 @@ df <- data.frame(True = Data.Test.2$Y, Pred.F1 = PredCrisis.FE.F1, Pred.J = Pred
 Metrics.out.FE <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred.F1), 
                              res_J = computeMetrics(True = df$True, Pred = df$Pred.J))
 ```
+
+<div align="center">
+  <table>
+    <tr>
+      <td></td><td>PR curve</td><td>ROC curve</td>
+    </tr>
+    <tr>
+      <td>True positive</td> <td>4</td> <td>5</td>
+    </tr>
+    <tr>
+      <td>False positive</td> <td>9</td> <td>12</td>
+    </tr>
+    <tr>
+      <td>Sensitivity/Recall</td> <td>0.57</td> <td>0.71</td>
+    </tr>
+    <tr>
+      <td>Specificity</td> <td>0.79</td> <td>0.71</td>
+    </tr>
+    <tr>
+      <td>Precision</td> <td>0.31</td> <td>0.29</td>
+    </tr>
+    <tr>
+      <td>Accuracy</td> <td>0.76</td> <td>0.71</td>
+    </tr>
+    <tr>
+      <td>F1</td> <td>0.40</td> <td>0.42</td>
+    </tr>
+  </table>
+  <caption>
+    <em>Table 4.</em> Main performance metrics for the out-of-sample forecast under the estimated fixed-effect logit model. The total number of observed events of interesr is 7. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
+  </caption>
+</div>
