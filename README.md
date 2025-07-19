@@ -11,3 +11,6 @@ In particular, this repository contains:
 1. the file `EWS_Functions.R`, which includes all the functions required to estimate the models and perform prediction. Each function is documented inside the file;
 2. the file `EWS_Data.RData`, which contains a simulated dataset used for illustrative purposes;
 3. the folder `Example`, which provides example scripts with code and output to replicate the main results.
+
+
+<a href="EWS_Functions.R">Prova!</a>
