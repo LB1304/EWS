@@ -70,7 +70,7 @@ computeProbCrisis <- function(Model, Psi.C1) {
 computeMetrics <- function(True, Pred) {
   u <- union(Pred, True)
   Tbl <- table(factor(Pred, u), factor(True, u))
-  TP <- Tbl[2, 2]; FP <- Tbl[2, 1]; FN <- Tbl[1, 2]; TN <- Tbl[1, 1]
+  TP <- Tbl["2", "2"]; FP <- Tbl["2", "1"]; FN <- Tbl["1", "2"]; TN <- Tbl["1", "1"]
   
   SENS = TP/(TP+FN)
   SPEC = TN/(TN+FP)
