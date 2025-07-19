@@ -140,7 +140,7 @@ require(dplyr)
 source("EWS_Functions.R")
 load("EWS_Data.RData")
 
-# Dataset for the pooled logit and pooled probit models: plit the data into training (T−1 time points) and test (final time point) sets
+# Dataset for the pooled logit and pooled probit models: split the data into training (T−1 time points) and test (final time point) sets
 Data.1 <- Data %>%
   mutate(Y = as.factor(Y))
 Data.Train.1 <- Data.1 %>% 
@@ -149,7 +149,7 @@ Data.Test.1 <- Data.1 %>%
   filter(Time == max(Time)) %>% 
   mutate(Time = Time - max(Time) + 1)
 
-# Dataset for the fixed-effects model: plit the data into training (T−1 time points) and test (final time point) sets
+# Dataset for the fixed-effects model: split the data into training (T−1 time points) and test (final time point) sets
 Data.2 <- Data %>%
   group_by(Id) %>%
   filter(any(Y == 1, na.rm = TRUE)) %>%
