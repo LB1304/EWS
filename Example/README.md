@@ -85,6 +85,36 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
                           res_J = computeMetrics(True = df$True, Pred = df$Pred.J))
 ```
 
+<div align="center">
+<table>
+  <tr>
+    <td></td><td>PR curve</td><td>ROC curve</td>
+  </tr>
+  
+  <tr>
+    <td>True positive</td> <td>6</td> <td>6</td>
+  </tr>
+  <tr>
+    <td>False positive</td> <td>1</td> <td>2</td>
+  </tr>
+  <tr>
+    <td>Sensitivity/Recall</td> <td>0.86</td> <td>0.86</td>
+  </tr>
+  <tr>
+    <td>Specificity</td> <td>0.99</td> <td>0.98</td>
+  </tr>
+  <tr>
+    <td>Precision</td> <td>0.86</td> <td>0.75</td>
+  </tr>
+  <tr>
+    <td>Accuracy</td> <td>0.98</td> <td>0.97</td>
+  </tr>
+  <tr>
+    <td>F1</td> <td>0.86</td> <td>0.80</td>
+  </tr>
+</table>
+</div>
+
 
 
 <h2>Early Warning Systems using binary regression models</h2>
