@@ -166,5 +166,50 @@ Data.Test.2 <- Data.2 %>%
 
 <h3>Binary regression models estimation</h3>
 
+....
+
+```r
+ModEst.PL <- glm(Y ~ X1 + X2 + X3 + X4, data = Data.Train.1, family = binomial(link = "logit"))
+ModEst.PP <- glm(Y ~ X1 + X2 + X3 + X4, data = Data.Train.1, family = binomial(link = "logit"))
+ModEst.FE <- glm(Y ~ X1 + X2 + X3 + X4 + Id, data = Data.Train.2, family = binomial(link = "probit"))
+```
 
 
+<h3>In-sample prediction</h3>
+
+We estimate conditional response probabilities and compute the crisis probabilities for each sample unit and each time occasion in the training set. Then, we evaluate in-sample prediction performance using different cut-off values (based on ROC and PR curves), and report the associated evaluation metrics.
+
+```r
+ProbCrisis.PL <- ModEst.PL$fitted.values
+Metrics.in.PL <- computeCutOff(ProbCrisis = ProbCrisis.PL, True = Data.Train.1$Y)
+ProbCrisis.PP <- ModEst.PP$fitted.values
+Metrics.in.PP <- computeCutOff(ProbCrisis = ProbCrisis.PP, True = Data.Train.1$Y)
+ProbCrisis.FE <- ModEst.FE$fitted.values
+Metrics.in.FE <- computeCutOff(ProbCrisis = ProbCrisis.FE, True = Data.Train.2$Y)
+```
+
+
+<h3>Out-of-sample forecast</h3>
+
+```r
+PredProbCrisis.PL <- predict(ModEst.PL, newdata = Data.Test.1, type = "response")
+PredProbCrisis.PP <- predict(ModEst.PP, newdata = Data.Test.1, type = "response")
+PredProbCrisis.FE <- predict(ModEst.FE, newdata = Data.Test.2, type = "response")
+
+PredCrisis.PL.F1 <- ifelse(PredProbCrisis.PL < Metrics.in.PL$Res.Optimal$res_F1[1], 0, 1)
+PredCrisis.PL.J <- ifelse(PredProbCrisis.PL < Metrics.in.PL$Res.Optimal$res_J[1], 0, 1)
+PredCrisis.PP.F1 <- ifelse(PredProbCrisis.PP < Metrics.in.PP$Res.Optimal$res_F1[1], 0, 1)
+PredCrisis.PP.J <- ifelse(PredProbCrisis.PP < Metrics.in.PP$Res.Optimal$res_J[1], 0, 1)
+PredCrisis.FE.F1 <- ifelse(PredProbCrisis.FE < Metrics.in.FE$Res.Optimal$res_F1[1], 0, 1)
+PredCrisis.FE.J <- ifelse(PredProbCrisis.FE < Metrics.in.FE$Res.Optimal$res_J[1], 0, 1)
+
+df <- data.frame(True = Data.Test.1$Y, Pred.F1 = PredCrisis.PL.F1, Pred.J = PredCrisis.PL.J)
+Metrics.out.PL <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred.F1), 
+                             res_J = computeMetrics(True = df$True, Pred = df$Pred.J))
+df <- data.frame(True = Data.Test.1$Y, Pred.F1 = PredCrisis.PP.F1, Pred.J = PredCrisis.PP.J)
+Metrics.out.PP <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred.F1), 
+                             res_J = computeMetrics(True = df$True, Pred = df$Pred.J))
+df <- data.frame(True = Data.Test.2$Y, Pred.F1 = PredCrisis.FE.F1, Pred.J = PredCrisis.FE.J)
+Metrics.out.FE <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred.F1), 
+                             res_J = computeMetrics(True = df$True, Pred = df$Pred.J))
+```
