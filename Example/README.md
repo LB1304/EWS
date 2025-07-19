@@ -77,7 +77,7 @@ Metrics.in <- computeCutOff(ProbCrisis = ProbCrisis, True = Response.Train)
     </tr>
   </table>
   <caption>
-    <em>Table 1.</em> In-sample prediction evaluation metrics
+    <em>Table 1.</em> Main performance metrics for the in-sample prediction under the estimated hidden Markov model. The total number of observed events of interesr is 123. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
   </caption>
 </div>
 
@@ -125,7 +125,7 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
     </tr>
   </table>
   <caption>
-    <em>Table 2.</em> Out-of-sample forecast evaluation metrics
+    <em>Table 2.</em> Main performance metrics for the out-of-sample forecast under the estimated hidden Markov model. The total number of observed events of interesr is 7. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
   </caption>
 </div>
 
@@ -187,6 +187,41 @@ Metrics.in.PP <- computeCutOff(ProbCrisis = ProbCrisis.PP, True = Data.Train.1$Y
 ProbCrisis.FE <- ModEst.FE$fitted.values
 Metrics.in.FE <- computeCutOff(ProbCrisis = ProbCrisis.FE, True = Data.Train.2$Y)
 ```
+
+<div align="center">
+  <table>
+    <tr>
+      <td></td><td>PR curve</td><td>ROC curve</td>
+    </tr>
+    <tr>
+      <td>Optimal cut-off</td> <td>0.31</td> <td>0.21</td>
+    </tr>
+    <tr>
+      <td>True positive</td> <td>112</td> <td>118</td>
+    </tr>
+    <tr>
+      <td>False positive</td> <td>16</td> <td>46</td>
+    </tr>
+    <tr>
+      <td>Sensitivity/Recall</td> <td>0.91</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>Specificity</td> <td>0.99</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>Precision</td> <td>0.88</td> <td>0.72</td>
+    </tr>
+    <tr>
+      <td>Accuracy</td> <td>0.98</td> <td>0.96</td>
+    </tr>
+    <tr>
+      <td>F1</td> <td>0.89</td> <td>0.82</td>
+    </tr>
+  </table>
+  <caption>
+    <em>Table 1.</em> Main performance metrics for the in-sample prediction under the estimated fixed-effect logit model. The total number of observed events of interesr is 123. Column on the left is related to the Precision-Recall (PR) curve; column on the right to the Receiver Operating Characteristic (ROC) curve
+  </caption>
+</div>
 
 
 <h3>Out-of-sample forecast</h3>
