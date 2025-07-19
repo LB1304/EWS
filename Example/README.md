@@ -1,4 +1,4 @@
-<h2>Early Warning Systems using hidden Markov model</h2>
+<h1>Early Warning Systems using hidden Markov model</h1>
 
 We load the necessary packages, source the function definitions, and load the simulated dataset. The training set consists of the first T−1 time points, while the test set includes the final time point.
 
@@ -24,6 +24,9 @@ Time <- Data.Train$Time
 Id <- Data.Train$Id
 ```
 
+
+<h3>Hidden Markov model estimation</h3>
+
 We fit a hidden Markov model with 3 latent states using the training data. The model includes covariates into the measurement sub-model through a logistic regression on the conditional response probabilities.
 
 ```r
@@ -31,6 +34,9 @@ RespForm <- formula(Y ~ X1 + X2 + X3 + X4)
 ModEst <- lmest(responsesFormula = RespForm, data = Data.Train, index = c("Id", "Time"), 
                 k = 3, start = 0, tol = 1e-6, maxit = 1e5, out_se = T, output = T)
 ```
+
+
+<h3>In-sample prediction</h3>
 
 We estimate conditional response probabilities and compute the crisis probabilities for each sample unit and each time occasion in the training set. Then, we evaluate in-sample prediction performance using different cut-off values (based on ROC and PR curves), and report the associated evaluation metrics.
 
@@ -74,6 +80,9 @@ Metrics.in <- computeCutOff(ProbCrisis = ProbCrisis, True = Response.Train)
     <em>Table 1.</em> In-sample prediction evaluation metrics
   </caption>
 </div>
+
+
+<h3>Out-of-sample forecast</h3>
 
 We compute the crisis probability for each sample unit in the test set and forecast the event of interest using the previously selected optimal cut-offs. We report the standard evaluation metrics to assess the performance of out-of-sample forecast.
 
