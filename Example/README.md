@@ -1,6 +1,6 @@
 <h1>Early Warning Systems using hidden Markov model</h1>
 
-We load the necessary packages, source the function definitions, and load the simulated dataset. The training set consists of the first T−1 time points, while the test set includes the final time point.
+We load the necessary packages, source the function definitions, and load the simulated dataset. The training set consists of the first $T−1$ time points, while the test set includes the final time point.
 
 ```r
 require(dplyr)
@@ -131,11 +131,40 @@ Metrics.out <- data.frame(res_F1 = computeMetrics(True = df$True, Pred = df$Pred
 
 
 
-<h2>Early Warning Systems using binary regression models</h2>
+<h1>Early Warning Systems using binary regression models</h1>
 
-Preparing Data.1 for fixed effect model dropping all countries that do not present crises during the hole period and Data.2 for the other two models
+We load the necessary packages, source the function definitions, and load the simulated dataset. For the fixed-effects model, we also need to drop all units that do not present any occurrence of the event of interest during the whole period. The training set consists of the first $T−1$ time points, while the test set includes the final time point.
+
+```r
+require(dplyr)
+source("EWS_Functions.R")
+load("EWS_Data.RData")
+
+# Dataset for the pooled logit and pooled probit models: plit the data into training (T−1 time points) and test (final time point) sets
+Data.1 <- Data %>%
+  mutate(Y = as.factor(Y))
+Data.Train.1 <- Data.1 %>% 
+  filter(Time != max(Time))
+Data.Test.1 <- Data.1 %>% 
+  filter(Time == max(Time)) %>% 
+  mutate(Time = Time - max(Time) + 1)
+
+# Dataset for the fixed-effects model: plit the data into training (T−1 time points) and test (final time point) sets
+Data.2 <- Data %>%
+  group_by(Id) %>%
+  filter(any(Y == 1, na.rm = TRUE)) %>%
+  ungroup() %>% 
+  mutate(Id = dense_rank(Id)) %>% 
+  mutate(Y = as.factor(Y), Id = as.factor(Id))
+Data.Train.2 <- Data.2 %>% 
+  filter(Time != max(Time))
+Data.Test.2 <- Data.2 %>% 
+  filter(Time == max(Time)) %>% 
+  mutate(Time = Time - max(Time) + 1)
+```
 
 
+<h3>Binary regression models estimation</h3>
 
 
 
