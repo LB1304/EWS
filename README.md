@@ -3,7 +3,7 @@
 <br>
 
 
-In this repository we illustrate the $R$ code used to implement Early Warning Systems (EWS) based on hidden Markov (HM) and binary regression models. 
+In this repository we illustrate the $R$ code used to implement Early Warning Systems based on hidden Markov and binary regression models. 
 
 
 
