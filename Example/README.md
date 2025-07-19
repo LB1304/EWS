@@ -177,7 +177,7 @@ ModEst.FE <- glm(Y ~ X1 + X2 + X3 + X4 + Id, data = Data.Train.2, family = binom
 
 <h3>In-sample prediction</h3>
 
-We estimate conditional response probabilities and compute the crisis probabilities for each sample unit and each time occasion in the training set. Then, we evaluate in-sample prediction performance using different cut-off values (based on ROC and PR curves), and report the associated evaluation metrics.
+Per tutti e tre i modelli we compute the crisis probabilities for each sample unit and each time occasion in the training set. Then, we evaluate in-sample prediction performance using different cut-off values (based on ROC and PR curves). A titolo d'esempio we report the associated evaluation metrics only for the fixed-effects model. 
 
 ```r
 ProbCrisis.PL <- ModEst.PL$fitted.values
@@ -190,6 +190,8 @@ Metrics.in.FE <- computeCutOff(ProbCrisis = ProbCrisis.FE, True = Data.Train.2$Y
 
 
 <h3>Out-of-sample forecast</h3>
+
+Per tutti e tre i modelli we compute the crisis probability for each sample unit in the test set and forecast the event of interest using the previously selected optimal cut-offs. A titolo d'esempio we report the standard evaluation metrics to assess the performance of out-of-sample forecast solo nel caso of the fixed-effects model. 
 
 ```r
 PredProbCrisis.PL <- predict(ModEst.PL, newdata = Data.Test.1, type = "response")
