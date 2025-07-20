@@ -3,7 +3,7 @@
 <br>
 
 
-In this repository, we illustrate the R code used to implement Early Warning Systems based on different probabilistic models.
+In this repository, we illustrate the R code used in the paper <em>Exploring Binary Regression and Hidden Markov Models for Early Warning Systems<\em> to implement Early Warning Systems based on different probabilistic models.
 Assuming a univariate response variable that indicates the occurrence of an event of interest (e.g., financial crises), we consider hidden Markov models, with covariates included in the measurement submodel via a logistic parameterization of the conditional response probabilities, and three variants of binary regression models: pooled logit, pooled probit, and fixed-effects models.
 In all cases, we perform in-sample prediction and out-of-sample forecasting based on the estimated event probabilities provided by each model, and we evaluate predictive performance using standard classification metrics such as accuracy, precision, recall, and F1 score.
 
