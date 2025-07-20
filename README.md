@@ -8,8 +8,8 @@ In this repository we illustrate the $R$ code used to implement Early Warning Sy
 
 
 In particular, this repository contains: 
-1. the file [`EWS_Functions.R`](EWS_Functions.R), which includes all the functions required to estimate the models and perform prediction. Each function is documented inside the file;
-2. the file [`EWS_Data.RData`](EWS_Data.RData), which contains a simulated dataset used for illustrative purposes;
+1. the file [`EWS_Functions.R`](EWS_Functions.R), which includes all the functions required to perform in-sample prediction and out-of-sample forecasting, and to assess ... through the standard performance metrics. Each function is documented inside the file;
+2. the file [`EWS_Data.RData`](EWS_Data.RData), which contains a simulated dataset used for illustrative purposes. The dataset includes a binary response variable (indicating the occurrence of the event of interest) and four continuous covariates. It consists of 95 units observed over 15 time periods and is structured in long format;
 3. the folder [`Example`](Example), which provides example scripts with code and output to replicate the main results.
 
 
