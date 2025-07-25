@@ -165,3 +165,29 @@ forecastProbCrisis <- function(Id, Covariates.Train, Covariates.Test, Model) {
 
 
 
+## ----------------------------------------------------------------------------
+## Auxiliary function to create the data matrix for the lmest function
+## ----------------------------------------------------------------------------
+
+require(Formula)
+GetResponses <- function (data, formula) {
+  if (is.null(formula)) {
+    Y <- data
+    X <- NULL
+  } else {
+    formula <- Formula(formula)
+    ll <- length(formula)
+    Y <- model.part(formula, data = model.frame(formula, data = data, na.action = NULL), lhs = 1)
+    Y <- data.matrix(Y)
+    X <- NULL
+    if (ll[2] != 0) {
+      X <- model.matrix(formula, model.frame(formula = formula, data, na.action = NULL))
+      X <- data.matrix(X)[, -1]
+    }
+  }
+  out <- list(Y = Y, X = X)
+  return(out)
+}
+
+
+
