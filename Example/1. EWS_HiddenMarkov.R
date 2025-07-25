@@ -1,5 +1,6 @@
 require(dplyr)
 require(LMest)
+require(testthat)
 source("EWS_Functions.R")
 load("EWS_Data.RData")
 
@@ -21,6 +22,7 @@ Id <- Data.Train$Id
 
 ## Model estimation
 RespForm <- formula(Y ~ X1 + X2 + X3 + X4)
+testthat::local_mocked_bindings(getResponses = GetResponses, .package = "LMest")
 ModEst <- lmest(responsesFormula = RespForm, data = Data.Train, index = c("Id", "Time"), 
                 k = 3, start = 0, tol = 1e-6, maxit = 1e5, out_se = T, output = T)
 
